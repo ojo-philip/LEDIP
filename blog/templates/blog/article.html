@@ -1,0 +1,48 @@
+  {% extends "blog/base.html" %}
+  {% block content %}
+  {% load static %}
+<!-- main -->
+<main>
+    <!-- banner -->
+    <div class="blog-banner" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url('{%static 'blog/images/blog banner.jpg' %}') center/cover no-repeat fixed;">
+      <!-- <img src="./images/bg.jpg" alt="" srcset=""> -->
+      <div class="banner-info">
+        <h1>Language Education And Digital Instructional Perspectives</h1>
+        <br>
+        <h2>Blog</h2>
+        <p>Learn and Re-learn Languages Using this Platform</p>
+      </div>
+    </div>
+    <!-- end banner -->
+    <!-- our article -->
+    <article class="section-container">
+      <div class="articles">
+        {% for post in items %}
+        <!-- single article -->
+        <div class="single-article" data-aos="fade-down" data-aos-duration="2000">
+          <div class="article-img">
+            <img src="{{ post.thumbnail_url }}" alt="" srcset="">
+          </div>
+          <div class="article-date"><i class="fas fa-calendar"></i>{{ post.updated|date:'F d , Y' }}</div>
+          <div class="article-info">
+            <div class="article-heading">
+              <a href="{{ post.get_absolute_url }}"><h3>{{ post.title }}</h3></a>
+            </div>
+            <div class="article-brief">
+              <p>{{ post.content|safe|truncatewords:18 }}</p>
+            </div>
+            <div class="read-more-btn">
+              <a href="{{ post.get_absolute_url }}">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- end of single article -->
+        {% endfor %}
+      </div>
+    </article>
+    <!-- end our article -->
+    {% include "blog/pagination.html" %}
+  </main>
+  <!-- end main -->
+{% endblock content %}

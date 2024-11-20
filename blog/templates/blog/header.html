@@ -1,0 +1,53 @@
+{% load static %}
+<header>
+    <div class="header-info">
+      <div class="hour-contact">
+        <div class="working-hour">
+          <p><i class="fas fa-clock"></i> Working Hours: Sunday to Monday, 9am - 6pm</p>
+        </div>
+        <div class="header-contact">
+          <p><i class="fas fa-phone"></i> Call: +2348032134370</p>
+        </div>
+        
+      </div>
+      <div class="header-social">
+        <a href="" class="header-social-link"><i class="fab fa-facebook"></i></a>
+        <a href="" class="header-social-link"><i class="fab fa-twitter"></i></a>
+        <a href="" class="header-social-link"><i class="fab fa-instagram"></i></a>
+        <a href="" class="header-social-link"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    <!-- nav bar -->
+    <nav class="nav-bar">
+      <div class="nav-top">
+
+        <div class="nav-logo">
+          <!-- <a href=""><p>Better <span>Health</span></p></a> -->
+          <a href="{% url 'blog:home_page' %}"><img src="{% static 'blog/images/Logo large.png' %}" alt=""></a>
+        </div>
+        <div class="nav-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+      <div class="close-links">
+        <div class="nav-close-btn">
+          <i class="fas fa-times"></i>
+        </div>
+        <ul class="nav-links">
+          <li class="nav-link"><a href="{% url 'blog:home_page' %}">Home</a></li>
+          <li class="nav-link"><a href="{% url 'blog:about_page' %}">About Us</a></li>
+          <li class="nav-link"><a href="{% url 'blog:blog_page' %}">Blog</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-link"><a href="{% url 'account_logout' %}">Logout</a></li>
+          {% else %}
+          <li class="nav-link"><a href="{% url 'account_signup' %}">Sign Up</a></li>
+          <li class="nav-link"><a href="{% url 'account_login' %}">Login</a></li>
+          <!-- <li class="nav-link"><a href="profile.html">Profile</a></li> -->
+          {% endif %}
+          <li class="nav-link"><a href="{% url 'blog:contact_page' %}">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- end nav bar -->
+
+  </header>

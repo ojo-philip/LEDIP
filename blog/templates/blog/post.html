@@ -1,0 +1,72 @@
+{% extends "blog/base.html" %}
+  <!-- main -->
+  {% block content %}
+  <main>
+    <div class="post-banner">
+      <img src="{{ post_detail.thumbnail_url }}" alt="" srcset="">
+      <div class="post-banner-info">
+        <h1>{{ post_detail.title }}</h1>
+      </div>
+      <div class="post-banner-shade"></div>
+    </div>
+    <!-- end banner -->
+    <!-- our service -->
+    <article class="section-container post-contents">
+      <h2>{{ post_detail.title }}</h2>
+      <p>{{ post_detail.content|safe|truncatewords:300 }}</p>
+    </article>
+    <div class="section-container subscribe">
+      <h2>Do you want to have access to the full article?</h2>
+      <div class="">
+        <a href="" class="subscribe-btn">Subscribe Here</a>
+      </div>
+    </div>
+
+    <!-- end of our article -->
+    <!-- share post -->
+    <div class="section-container">
+      <div class="share-this">
+        <h3>Share This:</h3>
+      </div>
+      <div class="share-links">
+        <a href=""><i class="fab fa-facebook"></i></a>
+        <a href=""><i class="fab fa-twitter"></i></a>
+        <a href=""><i class="fab fa-instagram"></i></a>
+        <a href=""><i class="fab fa-linkedin"></i></a>
+        <a href=""><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <!-- end share post -->
+
+    <!-- recent posts -->
+    <div class="section-container">
+            <!-- section-heading -->
+      <div class="section-heading">
+        <h2>Latest Articles</h2>
+      </div>
+      <!-- section-heading -->
+      <div class="recent-posts">
+        {% for recent_post in recent_posts %}
+        <!-- single recent post -->
+        <article class="single-recent-post">
+          <div class="recent-post-img">
+            <img src="{{ recent_post.thumbnail_url }}" alt="">
+          </div>
+          <div class="recent-post-detail">
+            <div class="recent-post-heading">
+              <a href=""><h3>{{ recent_post.title }}</h3></a>
+            </div>
+            <div class="recent-post-date">
+              <p><i class="fas fa-calendar"></i> {{ recent_post.updated|date:'F d , Y' }}</p>
+            </div>
+          </div>
+        </article>
+        <!-- end single recent post -->
+        {% endfor %}
+        
+      </div>
+    </div>
+    <!-- end of recent posts -->
+  </main>
+  <!-- end main -->
+  {% endblock content %}

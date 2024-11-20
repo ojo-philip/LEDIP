@@ -1,0 +1,163 @@
+
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block head_title %}Language Education And Digital Instructional Perspectives (LEDIP){% endblock %}
+
+  {% block content %}
+      {%include 'blog/banner.html' %}
+      
+      <main>
+        <div class="little-about-us section-container">
+          <p><b>LEDIP</b> is an educational platform wholly dedicated to Language Education and digitalised pedagogical sensibilities. It covers the intricacies of language learning, acquisition, academic research writings, language policy and planning and classroom instructional strategies for the 21st Century Scholars.</p>
+        </div>
+        <!-- our mission -->
+        <article class="section-container" data-aos="fade-right" data-aos-duration="2000">
+          <!-- section-heading -->
+          <div class="section-heading">
+            <h2>Mission</h2>
+          </div>
+          <!-- section-heading -->
+          <div class="mission">
+              <div class="mission-icon">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <div class="mission-info">
+                <p>Our mission is to serve as a functional hub for Language Educators, Applied Linguists. Sociolinguists and Second Language Scholars in the bid to enhance the dynamism of Language Education.</p>
+              </div>
+          </div>
+        </article>
+        <!-- end of mission -->
+        <!-- our mission -->
+        <article class="section-container" data-aos="fade-up" data-aos-duration="2000">
+          <!-- section-heading -->
+          <div class="section-heading">
+            <h2>Vision</h2>
+          </div>
+          <!-- section-heading -->
+          <div class="vision">
+              <div class="vision-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <div class="vision-info">
+                <ul>
+                  <li>Unlocking human linguistic ingenuity, creativity and communicative services</li>
+                  <li>Promotion of language learning through digital literacy </li>
+                  <li>Assisting learners in academic research and professional development </li>
+                  <li>Raising a vibrant language teaching and learning community through interactive connectivity.</li>
+                </ul>
+              </div>
+          </div>
+        </article>
+        <!-- end of mission -->
+        <!-- our service -->
+        <article class="section-container">
+          <!-- section-heading -->
+          <div class="section-heading">
+            <h2>Practical Engagements</h2>
+          </div>
+          <!-- section-heading -->
+          <div class="our-services">
+            <!-- single service -->
+            <div class="single-service">
+              <div class="service-icon">
+                <i class="fas fa-chalkboard-teacher    "></i>
+              </div>
+              <div class="service-info">
+                <p>Teaching</p>
+              </div>
+            </div>
+            <!-- end single service -->
+            <!-- single service -->
+            <div class="single-service">
+              <div class="service-icon">
+                <i class="fas fa-laptop"></i>
+              </div>
+              <div class="service-info">
+                <p>Technological Inclusion  </p>
+              </div>
+            </div>
+            <!-- end single service -->
+            <!-- single service -->
+            <div class="single-service">
+              <div class="service-icon">
+                <i class="fas fa-user-group"></i>
+              </div>
+              <div class="service-info">
+                <p>Team Researching </p>
+              </div>
+            </div>
+            <!-- end single service -->
+            <!-- single service -->
+            <div class="single-service">
+              <div class="service-icon">
+                <i class="fas fa-user-secret"></i>
+              </div>
+              <div class="service-info">
+                <p>Tutoring</p>
+              </div>
+            </div>
+            <!-- end single service -->
+          </div>
+        </article>
+        <!-- end of our service -->
+        <!-- our target -->
+        <article class="section-container">
+          <!-- section-heading -->
+          <div class="section-heading">
+            <h2>LEDIP Team</h2>
+          </div>
+          <!-- section-heading -->
+          <div class="target-groups owl-carousel owl-theme">
+            {% for team in teams %}
+            <!-- single target group -->
+            <div class="single-target-group">
+              <div class="single-target-img">
+                <img src="{{ team.thumbnail_url }}" alt="">
+              </div>
+              <div class="single-target-detail">
+                <p>{{ team.name }}</p>
+                <p>{{ team.position }}</p>
+                <a href="{{ team.get_team_url }}">Know more...</a>
+              </div>
+            </div>
+            <!-- end of single target group -->
+            {% endfor %}
+          </div>
+        </article>
+        <!-- end our target -->
+        <!-- our article -->
+        <article class="section-container">
+          <!-- section-heading -->
+          <div class="section-heading">
+            <h2>Latest Articles</h2>
+          </div>
+          <!-- section-heading -->
+          <div class="articles">
+            {% for article in featured %}
+            <!-- single article -->
+            <div class="single-article" data-aos="fade-down" data-aos-duration="2000">
+              <div class="article-img">
+                <img src="{{ article.thumbnail_url }}" alt="" srcset="">
+              </div>
+              <div class="article-date"><i class="fas fa-calendar"></i> {{ article.updated|date:'F d , Y' }}</div>
+              <div class="article-info">
+                <div class="article-heading">
+                  <a href="{{ article.get_absolute_url }}"><h3>{{ article.title }}</h3></a>
+                </div>
+                <div class="article-brief">
+                  <p>{{ article.content|safe|truncatewords:18 }}</p>
+                </div>
+                <div class="read-more-btn">
+                  <a href="{{ article.get_absolute_url }}">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- end of single article -->
+            {% endfor %}
+          </div>
+        </article>
+        <!-- end our article -->
+      </main>
+  {% endblock content %}
+  <!-- main -->
+  <!-- end main -->

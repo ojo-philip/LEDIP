@@ -1,0 +1,20 @@
+        {% if items.has_other_pages %}
+        <!-- pagination -->
+    <ul class="pagination">
+      {% if items.has_previous %}
+      <li class="pagination-item prev"><a href="?page={{ items.previous_page_number }}{% if query %}&q={{ query }}{% endif %}"><i class="fas fa-arrow-left"></i></a></li>
+      {% endif %}
+      {% for i in page_range %}
+      {% if items.number == i %}
+      <li class="pagination-item pagination-active"><a href="?page={{ i }}{% if query %}&q={{ query }}{% endif %}">{{ i }}</a></li>
+      {% else %}
+      <li class="pagination-item"><a href="?page={{ i }}{% if query %}&q={{ query }}{% endif %}">{{ i }}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if items.has_next %}
+      <li class="pagination-item next"><a href="?page={{ items.next_page_number }}{% if query %}&q={{ query }}{% endif %}"><i class="fas fa-arrow-right"></i></a></li>
+      {% endif %}
+    </ul>
+    <!-- end of pagination -->
+    {% endif %}
+

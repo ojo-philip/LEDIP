@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta property="og:image" content="{{ post.thumbnail_url }}" /> -->
+    {% block meta %}
+    <meta name="description" content="Platform for medical related forum, medical multiple choice/T or F questions and happenings in the world of medics" />
+    <meta property="og:site_name" content="MedsJoin" />
+    <meta property="og:description" content="Platform for medical related forum, medical multiple choice/T or F questions and happenings in the world of medics" />
+    <meta property="og:image" content="{%static 'filesystem/images/medsjoinlogo.png' %}" />
+    <meta property="og:image:width" content="225" />
+    <meta property="og:image:height" content="225" />
+    <meta content="{%static 'filesystem/images/medsjoinlogo.png' %}" property="thumbnail" />
+    {% comment %} <meta name="twitter:card" content="summary_large_image"></meta> {% endcomment %}
+    {% endblock %}
+    <link rel="shortcut icon" href="{%static 'blog/images/Logo small.png' %}" type="image/x-icon">
+    <title>{% block head_title %}Language Education And Digital Instructional Perspectives (LEDIP){% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}" />
+    <link rel="preload" as="font" href="{% static 'blog/fontawesome-free-5.7.2-web 2/webfonts/fa-solid-900.woff2' %}" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="preload" as="font" href="{% static 'blog/fontawesome-free-5.7.2-web 2/webfonts/fa-brands-400.woff2' %}" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="preload" as="font" href="{% static 'blog/fontawesome-free-5.7.2-web 2/webfonts/fa-regular-400.woff2' %}" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'blog/fontawesome-free-6.2.0-web/css/all.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/owlcarousel/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/owlcarousel/owl.theme.default.min.css' %}" />
+    <link rel="stylesheet" href="{%static 'blog/css/aos.css' %}">
+  </head>
+  <body>
+    {% block preloader %}
+    {% endblock preloader %}
+    {% include 'blog/header.html' %} 
+    {% if messages %} 
+    {% for message in messages %}
+    <div class="navtop-margin section-center">
+      <p class="messages-{{message.tags}}">
+      {{ message }}</p>
+    </div>
+        {% endfor %} 
+        {% endif %} 
+        {% block content %} {% endblock content %}
+        {%include 'blog/footer.html' %}
+    <script src="{% static 'blog/js/googlejquery.js' %}"></script>
+    <script src="{% static 'blog/js/scripts.js' %}"></script>
+    <script src="{% static 'blog/js/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'blog/js/owlcarousel/owl.autoplay.js' %}"></script>
+
+  <script src="{% static 'blog/js/aos.js' %}"></script>
+  <script src="{% static 'blog/js/utility.js' %}"></script>
+  <script>
+    AOS.init()
+    $(document).ready(function(){
+      $(".post-contents").bind("cut copy", function(e){
+        e.preventDefault();
+      })
+    })
+  </script>
+    {% comment %} <script src="{% static 'blog/js/lazyload.js' %}"></script> {% endcomment %}
+    {% comment %} {% block script %}
+    <script>
+      $(document).ready(function () {
+        $(".reply-btn").click(function () {
+          $(this).parent().next(".reply-comment-container").fadeToggle();
+        });
+        //comment form
+        $(document).on("submit", ".comment-form", function (event) {
+          event.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (response) {
+              $(".comment-section").html(response["form"]);
+              $("textarea").val("");
+              $(".reply-btn").click(function () {
+                $(this).parent().next(".reply-comment-container").fadeToggle();
+                $("textarea").val("");
+              });
+            },
+            error: function (rs, e) {
+              console.log(rs, responseText);
+            },
+          });
+        });
+
+        //reply form
+        $(document).on("submit", ".reply-form", function (event) {
+          event.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (response) {
+              $(".comment-section").html(response["form"]);
+              $("textarea").val("");
+              $(".reply-btn").click(function () {
+                $(this).parent().next(".reply-comment-container").fadeToggle();
+                $("textarea").val("");
+              });
+            },
+            error: function (rs, e) {
+              console.log(rs, responseText);
+            },
+          });
+        });
+        });
+    </script>
+    {% endblock script %} {% endcomment %}
+  </body>
+</html>
